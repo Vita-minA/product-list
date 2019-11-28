@@ -1,0 +1,65 @@
+body {
+  height: auto;
+  padding: 0.5rem;
+  /* overflow: -moz-hidden-unscrollable; */
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  /* width: 0 !important; */
+  display: none;
+}
+.goods-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.goods-list .goods-show {
+  height: 58vw;
+  flex: 0 0 50%;
+  text-align: center;
+}
+.goods-list .goods-show img {
+  color: #fff;
+  height: 43vw;
+  width: 43vw;
+  border-radius: 0.5rem;
+  border: 0;
+}
+.goods-list .goods-show .goods-name {
+  /* 设置自动换行 */
+  width: 40vw;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* 设置字体*/
+  font-size: 3.5vw;
+  font-weight: 700;
+  font-family: -webkit-body;
+  text-align: left;
+  padding: 1.5vw;
+}
+.goods-list .goods-show .goods-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+}
+.goods-list .goods-show .goods-item .goods-count {
+  text-align: left;
+  font-size: 3vw;
+  font-weight: bolder;
+  color: grey;
+}
+.goods-list .goods-show .goods-item .goods-price {
+  font-size: 4vw;
+  color: red;
+}
+#load_box {
+  margin: 0 auto;
+}
+
+#load_box span {
+  text-align: center;
+}
