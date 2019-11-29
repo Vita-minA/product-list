@@ -1,24 +1,23 @@
 // 实现分页加载
 // 当前页码
 var page = 1
-function Paging() {
-}
+
+function Paging() {}
 Paging.prototype.loadPage = function () {
   // 请求新的数据
   // window.addEventListener('scroll', () => {
-    // 三个高度
-    var load = arguments[arguments.length - 1];
-    var contentH = document.body.scrollHeight;
-    var seeHeight = document.body.clientHeight;
-    var scrollTop = document.body.scrollTop;
-    if (contentH < seeHeight + scrollTop + 1) {
-      if (load.load_state === load_idle) {
-        page += 1;
-        console.log(`page:${page}`);
-        var http = new Http();
-        http.request(load, page);
-      }
+  // 三个高度
+  var load = arguments[arguments.length - 1];
+  var contentH = document.body.scrollHeight;
+  var seeHeight = document.body.clientHeight;
+  var scrollTop = document.body.scrollTop;
+  if (contentH < seeHeight + scrollTop + 1) {
+    if (load.load_state === load_idle) {
+      page += 1;
+      var http = new Http();
+      http.request(load, page);
     }
+  }
   // })
 }
 

@@ -20,7 +20,6 @@ Load.prototype.show = function (res) {
     var goods_list = myCreate('div')
     goods_list.classList.add('goods-list');
     document.body.appendChild(goods_list);
-    console.log("res:" + res)
     if (res.data) {
       for (let i = 0; i < res.data.length; i++) {
         var key = res.data[i];
@@ -33,7 +32,7 @@ Load.prototype.show = function (res) {
         // 商品图片
         var img_goods = myCreate("img");
         img_goods.src = '';
-        img_goods.alt = key.image;
+        img_goods.data_src = key.image;
         // img_goods.src = key.image;
         div_goods.appendChild(img_goods);
         // 添加商品的名称
@@ -61,23 +60,32 @@ Load.prototype.show = function (res) {
   // load_box.classList.add("load_box");
   // 这里实现完，用 case 重写
   // console.log(this.load_state);
-  if (this.load_state === load_idle) { // 成功
-    var temp = document.getElementById('load_box');
-    document.body.removeChild(temp);
-  } else if (this.load_state === load_end) { // 已经是最后一页
-    // 显示灰色的提示，几秒后消失
-    document.getElementById('load_box').innerHTML = "这是最后一页了";
-  } else if (this.load_state === load_error) { // 错误
-    document.getElementById('load_box').innerHTML = "加载出现错误了";
-    // 
-  } else if (this.load_state === loading) { // 正在加载
-    // 完成后消失
-    var load_box = myCreate("div");
-    document.body.appendChild(load_box);
-    load_box.id = 'load_box';
-    var load_span = myCreate("span");
-    load_box.appendChild(load_span);
-    load_span.innerHTML = "正在用力加载中";
+  switch (this.load_state) {
+    case load_idle: {
+      var temp = document.getElementById('load_box');
+      document.body.removeChild(temp);
+    }
+    break;
+    case loading: {
+      // 完成后消失
+      var load_box = myCreate("div");
+      document.body.appendChild(load_box);
+      load_box.id = 'load_box';
+      var load_span = myCreate("span");
+      load_box.appendChild(load_span);
+      load_span.innerHTML = "正在用力加载中";
+    }
+    break;
+    case load_end: {
+      document.getElementById('load_box').innerHTML = "这是最后一页了";
+    }
+    break;
+    case load_error: {
+      document.getElementById('load_box').innerHTML = "加载出现错误了";
+    }
+    break;
+    default:
+      break;
   }
   this.lazyload();
   window.addEventListener("scroll", throttle(this.lazyload, 500, 1000));
@@ -96,7 +104,7 @@ Load.prototype.lazyload = function () {
   for (var i = img_loaded; i < num; i++) {
     if (img[i].offsetTop < seeHeight + scrollTop) {
       // img[i].style.opacity = 1;
-      img[i].src = img[i].alt;
+      img[i].src = img[i].data_src;
       img_loaded = i + 1;
     }
   }

@@ -34,7 +34,7 @@ var throttle = function (fun, delay, time) {
       fun.apply(context, args);
       startTime = curTime;
     } else {
-      timeout = setTimeout( () => {
+      timeout = setTimeout(() => {
         fun.apply(context, args);
       }, delay);
     }

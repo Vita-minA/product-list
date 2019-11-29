@@ -20,7 +20,7 @@ body::-webkit-scrollbar {
   text-align: center;
 }
 .goods-list .goods-show img {
-  color: #fff;
+  /* color: #fff; */
   height: 43vw;
   width: 43vw;
   border-radius: 0.5rem;
@@ -57,9 +57,12 @@ body::-webkit-scrollbar {
   color: red;
 }
 #load_box {
-  margin: 0 auto;
+  text-align: center;
+  background-color: #31b0d5;
+  margin: 3vm 0;
 }
 
 #load_box span {
   text-align: center;
+  color: #fff;
 }
