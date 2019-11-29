@@ -4,6 +4,15 @@ function Ajax(obj) {
   this.callback = obj.callback || '';
   this.data = obj.data || '';
 };
+/**
+ * ajax 请求的封装
+ *
+ * @param {String} method 'post' or 'get'
+ * @param {String} url 资源的地址
+ * @param {Function} callback 回调的方法
+ * @param {Object} data {requestData={"userToken":"8ed7ddfde5ca37849b7c43591957d7fb73adc2a1", "pageNumber": "1"}}
+ * @returns
+ */
 Ajax.prototype.send = function (method, url, callback, data) {
   var method = method || this.method;
   var data = data || this.data;

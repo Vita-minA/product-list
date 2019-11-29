@@ -1,7 +1,7 @@
 function Http(obj = {}) {
   this.method = obj.method || 'post';
   this.url = obj.url || 'http://47.95.148.78/neckpets/getBlindBoxSeriesLitByTabType.json';
-  this.action = obj.action || '';
+  this.action = obj.action || ''; //
   this.data = obj.data || {
     requestData: {
       'userToken': '8ed7ddfde5ca37849b7c43591957d7fb73adc2a1',
@@ -9,8 +9,13 @@ function Http(obj = {}) {
     }
   };
 }
+/**
+ * request 方法：经进一步封装 ajax，将需要的配置写入类中避免多次写入数据并分配请求状态
+ *
+ * @param {Class} load main 中所实例化的的 load 类
+ * @param {Number} pageNumber 当前加载的页数
+ */
 Http.prototype.request = function (load, pageNumber) {
-  var state = 0;
   this.data.requestData['pageNumber'] = pageNumber;
   var ajax = new Ajax({
     method: this.method,

@@ -5,7 +5,11 @@ function Load() {
   // 计数已经显示的图片
   this.load_state = load_origin;
 };
-
+/**
+ * 完成页面的加载
+ *
+ * @param {Object} res 解析后的报文
+ */
 Load.prototype.show = function (res) {
   // if (this.load_state === load_state) {
   //   return;
@@ -76,8 +80,12 @@ Load.prototype.show = function (res) {
     load_span.innerHTML = "正在用力加载中";
   }
   this.lazyload();
-  window.addEventListener("scroll", this.throttle(this.lazyload, 500, 1000));
+  window.addEventListener("scroll", throttle(this.lazyload, 500, 1000));
 }
+/**
+ * 懒加载：通过高度判断当页面滑到对应的 img 出现在可视区域时，为 src 赋值
+ *
+ */
 Load.prototype.lazyload = function () {
   // var img = document.getElementsByClassName("goods-show");
   var img = document.getElementsByTagName("img");
@@ -92,24 +100,4 @@ Load.prototype.lazyload = function () {
       img_loaded = i + 1;
     }
   }
-}
-
-Load.prototype.throttle = function (fun, delay, time) {
-  var timeout = new Date();
-  var startTime = new Date();
-  return function () {
-    var context = window;
-    var args = arguments;
-    var curTime = new Date();
-    clearTimeout(timeout);
-    // 到达规定时间，触发 handler
-    if (curTime - startTime >= time) {
-      fun.apply(context, args);
-      startTime = curTime;
-    } else {
-      timeout = setTimeout(function () {
-        fun.apply(window, args);
-      }, delay);
-    }
-  };
 }

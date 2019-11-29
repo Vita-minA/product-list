@@ -1,11 +1,13 @@
 // 实现分页加载
 // 当前页码
-var page = 1;
-// 利用 paging 判断滑到最下面时，加载新的数据。
-function paging(load) {
+var page = 1
+function Paging() {
+}
+Paging.prototype.loadPage = function () {
   // 请求新的数据
-  window.addEventListener('scroll', function () {
+  // window.addEventListener('scroll', () => {
     // 三个高度
+    var load = arguments[arguments.length - 1];
     var contentH = document.body.scrollHeight;
     var seeHeight = document.body.clientHeight;
     var scrollTop = document.body.scrollTop;
@@ -17,8 +19,9 @@ function paging(load) {
         http.request(load, page);
       }
     }
-  })
+  // })
 }
+
 // loading 的要求：
 // 1.要有三种状态的判断 -- loading error finish
 // 状态值 --> 自然是请求的状态，如何获得请求状态？
